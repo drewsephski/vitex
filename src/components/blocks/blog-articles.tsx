@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import BeamCard from "@/components/ui/beam-card";
 import { Button } from "@/components/ui/button";
+import { Card } from '../ui/card';
 
 const BlogArticles: React.FC = () => {
   return (
@@ -13,7 +13,7 @@ const BlogArticles: React.FC = () => {
         </p>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 max-w-[80%] lg:max-w-[50%] mx-auto">
-        <BeamCard beamColor="#3b82f6" glowColor="rgba(59, 130, 246, 0.5)" hoverColor="rgba(59, 130, 246, 0.2)">
+        <Card>
           <h2 className="text-xl md:text-2xl font-bold text-slate-900 dark:text-white mb-3 md:mb-4">
             React: The Game-Changer for UI Development
           </h2>
@@ -27,9 +27,9 @@ const BlogArticles: React.FC = () => {
               Read More
             </Button>
           </Link>
-        </BeamCard>
+        </Card>
 
-        <BeamCard beamColor="#10b981" glowColor="rgba(16, 185, 129, 0.5)" hoverColor="rgba(16, 185, 129, 0.2)">
+        <Card>
           <h2 className="text-xl md:text-2xl font-bold text-slate-900 dark:text-white mb-3 md:mb-4">
             My Secret Weapon for Staying Ahead in Web Development
           </h2>
@@ -43,9 +43,9 @@ const BlogArticles: React.FC = () => {
               Explore Journey
             </Button>
           </Link>
-        </BeamCard>
+        </Card>
 
-        <BeamCard beamColor="#ef4444" glowColor="rgba(239, 68, 68, 0.5)" hoverColor="rgba(239, 68, 68, 0.2)">
+        <Card>
           <h2 className="text-xl md:text-2xl font-bold text-slate-900 dark:text-white mb-3 md:mb-4">
             CSS-Tricks: More Than Just CSS
           </h2>
@@ -59,9 +59,9 @@ const BlogArticles: React.FC = () => {
               Discover Trends
             </Button>
           </Link>
-        </BeamCard>
+        </Card>
 
-        <BeamCard beamColor="#f59e0b" glowColor="rgba(245, 158, 11, 0.5)" hoverColor="rgba(245, 158, 11, 0.2)">
+        <Card>
           <h2 className="text-xl md:text-2xl font-bold text-slate-900 dark:text-white mb-3 md:mb-4">
             SitePoint: A Developer's Learning Playground
           </h2>
@@ -75,7 +75,7 @@ const BlogArticles: React.FC = () => {
               Learn UI/UX
             </Button>
           </Link>
-        </BeamCard>
+        </Card>
       </div>
     </section>
   );
