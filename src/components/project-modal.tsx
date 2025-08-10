@@ -41,63 +41,65 @@ export function ProjectModal({ isOpen, onClose, project }: ProjectModalProps) {
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-[700px] lg:max-w-[900px] xl:max-w-[1000px] p-0 border-0 bg-transparent shadow-none">
-        <div className="relative w-full p-8 bg-background rounded-lg">
-          
-          <div className="space-y-6 w-full max-w-[1600px] mx-auto">
+      <DialogContent className="max-w-full sm:max-w-[90%] md:max-w-[90%] lg:max-w-[900px] xl:max-w-[1000px] p-0 border-0 bg-transparent shadow-none">
+        <div className="relative w-full p-4 sm:p-6 md:p-8 bg-background rounded-lg max-h-[90vh] overflow-y-auto">
+          <div className="space-y-4 md:space-y-6 w-full max-w-[1600px] mx-auto">
             <DialogHeader className="text-left">
-              <DialogTitle className="text-4xl font-bold tracking-tight mb-1">{project.title}</DialogTitle>
-              <DialogDescription className="text-lg text-muted-foreground">
+              <DialogTitle className="text-2xl xs:text-3xl sm:text-4xl font-bold tracking-tight mb-1">
+                {project.title}
+              </DialogTitle>
+              <DialogDescription className="text-sm xs:text-base sm:text-lg text-muted-foreground">
                 {project.description}
               </DialogDescription>
             </DialogHeader>
 
-          {project.image && (
-            <div className="relative -mx-6 -mt-6 mb-6 overflow-hidden rounded-t-lg bg-muted">
-              <img
-                src={project.image}
-                alt={`${project.title} screenshot`}
-                className="h-auto w-full aspect-video object-cover max-h-80"
-              />
-            </div>
-          )}
-
-          <div className="grid gap-8 grid-cols-1 xl:grid-cols-2">
-            <section className="space-y-6">
-              <div className="space-y-2">
-                <h3 className="text-2xl font-bold tracking-tight pb-2">The Challenge</h3>
-                <p className="text-base text-muted-foreground leading-relaxed">{project.problem}</p>
+            {project.image && (
+              <div className="relative -mx-4 sm:-mx-6 -mt-4 sm:-mt-6 mb-4 sm:mb-6 overflow-hidden rounded-t-lg bg-muted">
+                <img
+                  src={project.image}
+                  alt={`${project.title} screenshot`}
+                  className="h-auto w-full aspect-video object-cover max-h-40 xs:max-h-48 sm:max-h-56 md:max-h-64 lg:max-h-80"
+                  loading="lazy"
+                />
               </div>
+            )}
 
-              <div className="space-y-2">
-                <h3 className="text-2xl font-bold tracking-tight pb-2">My Solution</h3>
-                <p className="text-base text-muted-foreground leading-relaxed">{project.solution}</p>
-              </div>
-            </section>
+            <div className="grid gap-6 md:gap-8 grid-cols-1 lg:grid-cols-2">
+              <section className="space-y-4 md:space-y-6">
+                <div className="space-y-2">
+                  <h3 className="text-xl sm:text-2xl font-bold tracking-tight pb-1 sm:pb-2">The Challenge</h3>
+                  <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">{project.problem}</p>
+                </div>
 
-            <div className="space-y-6">
-              <section className="space-y-2">
-                <h3 className="text-2xl font-bold tracking-tight pb-2">Technical Challenges</h3>
-                <ul className="space-y-3">
-                  {project.challenges.map((challenge, i) => (
-                    <li key={i} className="flex items-start gap-3">
-                      <span className="mt-2 flex h-2 w-2 shrink-0 rounded-full bg-primary" />
-                      <span className="text-base text-muted-foreground leading-relaxed">{challenge}</span>
-                    </li>
-                  ))}
-                </ul>
+                <div className="space-y-2">
+                  <h3 className="text-xl sm:text-2xl font-bold tracking-tight pb-1 sm:pb-2">My Solution</h3>
+                  <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">{project.solution}</p>
+                </div>
               </section>
 
-              <section className="space-y-2">
-                <h3 className="text-2xl font-bold tracking-tight pb-2">Results & Impact</h3>
-                <ul className="space-y-3">
-                  {project.results.map((result, i) => (
-                    <li key={i} className="flex items-start gap-3">
-                      <span className="mt-2 flex h-2 w-2 shrink-0 rounded-full bg-green-500" />
-                      <span className="text-base text-muted-foreground leading-relaxed">{result}</span>
-                    </li>
-                  ))}
-                </ul>
+              <div className="space-y-4 md:space-y-6">
+                <section className="space-y-2">
+                  <h3 className="text-xl sm:text-2xl font-bold tracking-tight pb-1 sm:pb-2">Technical Challenges</h3>
+                  <ul className="space-y-2 sm:space-y-3">
+                    {project.challenges.map((challenge, i) => (
+                      <li key={i} className="flex items-start gap-3">
+                        <span className="mt-2 flex h-2 w-2 shrink-0 rounded-full bg-primary" />
+                        <span className="text-sm sm:text-base text-muted-foreground leading-relaxed">{challenge}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+
+                <section className="space-y-2">
+                  <h3 className="text-xl sm:text-2xl font-bold tracking-tight pb-1 sm:pb-2">Results & Impact</h3>
+                  <ul className="space-y-2 sm:space-y-3">
+                    {project.results.map((result, i) => (
+                      <li key={i} className="flex items-start gap-3">
+                        <span className="mt-2 flex h-2 w-2 shrink-0 rounded-full bg-green-500" />
+                        <span className="text-sm sm:text-base text-muted-foreground leading-relaxed">{result}</span>
+                      </li>
+                    ))}
+                  </ul>
               </section>
             </div>
 

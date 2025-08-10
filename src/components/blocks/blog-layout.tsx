@@ -67,18 +67,58 @@ export function BlogLayout({
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 text-slate-100 relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 text-slate-100 relative overflow-hidden text-base sm:text-[15px]">
       {/* Navbar */}
       <Navbar>
-        <NavBody className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <NavBody className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <NavbarLogo />
             <div className="hidden md:block">
-              <NavItems items={navItems} onItemClick={handleNavClick} className="space-x-8" />
+              <NavItems 
+                items={navItems} 
+                onItemClick={handleNavClick} 
+                className="space-x-4 md:space-x-6 px-2 py-1 text-sm sm:text-[15px] md:text-base hover:text-blue-400 transition-colors"
+              />
+            </div>
+            <div className="md:hidden">
+              <button 
+                onClick={() => {}}
+                className="p-2 -mr-2 text-slate-300 hover:text-white focus:outline-none"
+                aria-label="Toggle menu"
+              >
+                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+              </button>
             </div>
           </div>
         </NavBody>
       </Navbar>
+      
+      {/* Mobile menu */}
+      <div className="md:hidden fixed inset-0 bg-slate-900/95 backdrop-blur-sm z-40 transition-opacity duration-300 opacity-0 pointer-events-none">
+        <div className="absolute top-0 right-0 p-4">
+          <button className="p-2 text-slate-300 hover:text-white focus:outline-none">
+            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+        <div className="h-full flex flex-col items-center justify-center space-y-6 px-4">
+          {navItems.map((item, index) => (
+            <a
+              key={index}
+              href={item.link}
+              onClick={(e) => {
+                handleNavClick(e, item.link);
+              }}
+              className="text-xl font-medium text-slate-200 hover:text-blue-400 transition-colors px-4 py-2"
+            >
+              {item.name}
+            </a>
+          ))}
+        </div>
+      </div>
       
       {/* Background pattern */}
       <div className="absolute inset-0 opacity-5">
@@ -87,14 +127,23 @@ export function BlogLayout({
       </div>
 
       {/* Reading progress */}
-      <div className="fixed top-0 left-0 w-full h-0.5 bg-slate-800/50 z-50">
+      <div className="fixed top-0 left-0 w-full h-1 bg-slate-800/50 z-50">
         <div 
           className="h-full bg-gradient-to-r from-blue-400 via-blue-500 to-blue-400 transition-all duration-300 ease-out"
           style={{ width: `${readingProgress}%` }}
         ></div>
       </div>
 
-      {/* Floating reading stats */}
+      {/* Floating reading stats - Mobile */}
+      <div className={`fixed bottom-4 left-1/2 -translate-x-1/2 transition-all duration-500 z-40 ${isScrolled ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'} md:hidden`}>
+        <div className="bg-slate-900/90 backdrop-blur-xl border border-slate-700/50 rounded-full px-4 py-2 shadow-2xl flex items-center space-x-3 text-xs">
+          <span className="text-slate-300">{Math.round(readingProgress)}% read</span>
+          <span className="text-slate-400">•</span>
+          <span className="text-slate-300">{estimatedReadTime} min read</span>
+        </div>
+      </div>
+
+      {/* Floating reading stats - Desktop */}
       <div className={`fixed top-6 right-6 transition-all duration-500 z-40 ${isScrolled ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'} hidden lg:block`}>
         <div className="bg-slate-900/80 backdrop-blur-xl border border-slate-700/50 rounded-2xl px-4 py-3 shadow-2xl">
           <div className="flex items-center space-x-4 text-sm text-slate-300">
@@ -128,17 +177,17 @@ export function BlogLayout({
             </h1>
             
             {/* Author info */}
-            <div className="flex flex-col items-center space-y-4 text-slate-300">
-              <div className="flex items-center space-x-4">
-                <Avatar className="h-12 w-12 border-2 border-cyan-500/20">
+            <div className="flex flex-col items-center space-y-4 text-slate-300 sm:flex-row sm:space-x-4 sm:space-y-0">
+              <div className="flex items-center space-x-2 xs:space-x-4">
+                <Avatar className="h-10 w-10 xs:h-12 xs:w-12 border-2 border-cyan-500/20">
                   <AvatarImage src={authorImage} alt={author} />
                   <AvatarFallback className="bg-gradient-to-br from-blue-500 to-blue-600 text-white">
                     {author.split(' ').map(n => n[0]).join('')}
                   </AvatarFallback>
                 </Avatar>
-                <div className="text-left">
+                <div className="text-center sm:text-left">
                   <p className="text-sm font-medium text-slate-200">{author}</p>
-                  <div className="flex items-center space-x-2 text-xs">
+                  <div className="flex items-center justify-center sm:justify-start space-x-2 text-xs">
                     <time dateTime={new Date(date).toISOString()} className="text-slate-400">
                       {new Date(date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
                     </time>
