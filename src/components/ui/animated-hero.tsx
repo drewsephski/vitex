@@ -38,11 +38,6 @@ export default function AnimatedHero({
   const navItems = useMemo(
     () => [
       {
-        name: "Home",
-        link: "/",
-        isAnchor: false
-      },
-      {
         name: "About",
         link: "/about",
         isAnchor: false
