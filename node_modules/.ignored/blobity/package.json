@@ -1,0 +1,52 @@
+{
+  "name": "blobity",
+  "version": "0.2.3",
+  "description": "Fun blob cursor for any website",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "dev": "concurrently 'npm run watch:lib' 'npm run watch:site'",
+    "build:cleanup": "rm -rf lib && rm -rf dist && rm -rf site/public/blobity.js",
+    "build:lib": "tsc",
+    "build:dist": "webpack-cli",
+    "build:site": "npm run build --prefix site",
+    "build": "npm run build:cleanup && npm run build:lib && npm run build:site && npm run build:dist",
+    "build:ci": "npm i --prefix site && npm run build",
+    "site:install": "npm install --prefix site",
+    "prepare": "npm run build:lib",
+    "watch:site": "npm run develop --prefix site",
+    "watch:lib": "tsc --watch",
+    "watch": "webpack-cli --watch --mode=development",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Georgy Marchuk",
+  "license": "GPL-3.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gmrchk/blobity.git"
+  },
+  "dependencies": {
+    "kinet": "^2.2.1",
+    "lodash": "^4.17.21"
+  },
+  "peerDependencies": {
+    "react": "^16.8.0 || ^17.0.0 || ^18.0.0",
+    "vue": "next"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.171",
+    "@types/react": "^17.0.15",
+    "@types/react-syntax-highlighter": "^13.5.2",
+    "@types/styled-components": "^5.1.11",
+    "concurrently": "^6.3.0",
+    "prettier": "^2.3.2",
+    "react": "^17.0.2",
+    "vue": "next",
+    "terser-webpack-plugin": "^5.1.4",
+    "ts-loader": "^9.2.3",
+    "tslib": "^2.3.0",
+    "typescript": "^4.3.5",
+    "webpack": "^5.44.0",
+    "webpack-cli": "^4.7.2"
+  }
+}

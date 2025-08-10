@@ -16,7 +16,7 @@ export function Features() {
                                             fill="currentColor"
                                         />
                                     </svg>
-                                    <span className="mx-auto block w-fit text-5xl font-semibold">AI</span>
+                                    <span className="mx-auto block w-fit text-5xl font-semibold">Robust</span>
                                 </div>
                                 <h2 className="mt-6 text-center text-3xl font-semibold">AI Agent Development</h2>
                             </CardContent>
