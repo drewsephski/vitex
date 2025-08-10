@@ -64,14 +64,6 @@ export default function About() {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="mb-16"
           >
-            <div className="mb-10 text-center">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">
-                Professional Journey
-              </h2>
-              <p className="text-muted-foreground max-w-2xl mx-auto">
-                A timeline of my professional experience and key achievements.
-              </p>
-            </div>
             <div className="relative">
               <div className="absolute left-1/2 w-0.5 h-full bg-gradient-to-b from-transparent via-primary/30 to-transparent -translate-x-1/2 hidden md:block"></div>
               <div className="space-y-8">

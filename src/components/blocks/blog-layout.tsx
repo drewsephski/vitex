@@ -89,7 +89,7 @@ export function BlogLayout({
       {/* Reading progress */}
       <div className="fixed top-0 left-0 w-full h-0.5 bg-slate-800/50 z-50">
         <div 
-          className="h-full bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400 transition-all duration-300 ease-out"
+          className="h-full bg-gradient-to-r from-blue-400 via-blue-500 to-blue-400 transition-all duration-300 ease-out"
           style={{ width: `${readingProgress}%` }}
         ></div>
       </div>
@@ -117,48 +117,34 @@ export function BlogLayout({
           <header className="mb-16 text-center">
             {/* Category badge */}
             <div className="inline-block mb-8">
-              <span className="px-4 py-2 text-sm font-medium bg-gradient-to-r from-blue-500/20 to-purple-500/20 border border-blue-500/30 rounded-full text-blue-300 backdrop-blur-sm">
-                Technical Article
+              <span className="px-4 py-2 text-sm font-medium bg-gradient-to-r from-blue-500/20 to-blue-600/20 border border-blue-500/30 rounded-full text-blue-300 backdrop-blur-sm">
+                Web Development
               </span>
             </div>
-
-            {/* Title with enhanced typography */}
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-8 leading-[1.1] tracking-tight">
-              <span className="bg-gradient-to-r from-slate-100 via-slate-200 to-slate-300 bg-clip-text text-transparent">
-                {title}
-              </span>
+            
+            {/* Title */}
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 leading-tight bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-blue-500 to-blue-300">
+              {title}
             </h1>
-
-            {/* Enhanced author section */}
-            <div className="flex items-center justify-center space-x-6 mt-12">
+            
+            {/* Author info */}
+            <div className="flex flex-col items-center space-y-4 text-slate-300">
               <div className="flex items-center space-x-4">
-                <Avatar className="h-16 w-16 ring-2 ring-slate-700/50 ring-offset-4 ring-offset-slate-900">
+                <Avatar className="h-12 w-12 border-2 border-cyan-500/20">
                   <AvatarImage src={authorImage} alt={author} />
-                  <AvatarFallback className="bg-gradient-to-br from-blue-500 to-purple-600 text-white text-xl font-bold">
+                  <AvatarFallback className="bg-gradient-to-br from-blue-500 to-blue-600 text-white">
                     {author.split(' ').map(n => n[0]).join('')}
                   </AvatarFallback>
                 </Avatar>
                 <div className="text-left">
-                  <p className="text-xl font-semibold text-slate-200">{author}</p>
-                  <p className="text-slate-400 mt-1">{date}</p>
-                </div>
-              </div>
-              
-              <div className="h-12 w-px bg-slate-700"></div>
-              
-              <div className="flex flex-col space-y-2 text-sm text-slate-400">
-                <div className="flex items-center space-x-2">
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  <span>{estimatedReadTime} min read</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                  </svg>
-                  <span>2.1k views</span>
+                  <p className="text-sm font-medium text-slate-200">{author}</p>
+                  <div className="flex items-center space-x-2 text-xs">
+                    <time dateTime={new Date(date).toISOString()} className="text-slate-400">
+                      {new Date(date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+                    </time>
+                    <span className="text-slate-600">•</span>
+                    <span className="text-slate-400">{estimatedReadTime} min read</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -167,28 +153,28 @@ export function BlogLayout({
           {/* Enhanced content area */}
           <div className="prose prose-lg prose-invert max-w-none
                       prose-headings:font-bold prose-headings:tracking-tight prose-headings:scroll-mt-24
-                      prose-h1:text-5xl prose-h1:font-black prose-h1:mb-8 prose-h1:bg-gradient-to-r prose-h1:from-slate-100 prose-h1:to-slate-300 prose-h1:bg-clip-text prose-h1:text-transparent
-                      prose-h2:text-4xl prose-h2:mt-16 prose-h2:mb-8 prose-h2:bg-gradient-to-r prose-h2:from-blue-200 prose-h2:to-purple-200 prose-h2:bg-clip-text prose-h2:text-transparent prose-h2:border-l-4 prose-h2:border-blue-500/50 prose-h2:pl-6
-                      prose-h3:text-2xl prose-h3:mt-12 prose-h3:mb-6 prose-h3:text-slate-200
-                      prose-p:text-lg prose-p:leading-relaxed prose-p:text-slate-300 prose-p:my-6
+                      prose-h1:text-5xl prose-h1:font-black prose-h1:mb-8 prose-h1:bg-gradient-to-r prose-h1:from-blue-100 prose-h1:to-blue-300 prose-h1:bg-clip-text prose-h1:text-transparent
+                      prose-h2:text-4xl prose-h2:mt-16 prose-h2:mb-8 prose-h2:bg-gradient-to-r prose-h2:from-blue-200 prose-h2:to-blue-300 prose-h2:bg-clip-text prose-h2:text-transparent prose-h2:border-l-4 prose-h2:border-blue-500/50 prose-h2:pl-6
+                      prose-h3:text-2xl prose-h3:mt-12 prose-h3:mb-6 prose-h3:text-blue-200
+                      prose-p:text-lg prose-p:leading-relaxed prose-p:text-blue-300 prose-p:my-6
                       prose-a:text-blue-400 prose-a:no-underline hover:prose-a:text-blue-300 prose-a:transition-colors prose-a:duration-200
-                      prose-strong:text-slate-100 prose-strong:font-semibold
-                      prose-em:text-slate-200 prose-em:not-italic prose-em:bg-slate-800/50 prose-em:px-2 prose-em:py-1 prose-em:rounded
+                      prose-strong:text-blue-100 prose-strong:font-semibold
+                      prose-em:text-blue-200 prose-em:not-italic prose-em:bg-blue-800/50 prose-em:px-2 prose-em:py-1 prose-em:rounded
                       prose-blockquote:not-italic prose-blockquote:border-l-4 prose-blockquote:border-blue-500/70 
-                      prose-blockquote:bg-gradient-to-r prose-blockquote:from-slate-800/50 prose-blockquote:to-blue-900/20 
-                      prose-blockquote:px-8 prose-blockquote:py-6 prose-blockquote:rounded-r-xl prose-blockquote:text-slate-200 prose-blockquote:shadow-xl
-                      prose-code:bg-slate-800/80 prose-code:text-blue-300 prose-code:px-2 prose-code:py-1 prose-code:rounded prose-code:text-sm prose-code:font-mono prose-code:border prose-code:border-slate-700/50
-                      prose-pre:bg-slate-900/90 prose-pre:border prose-pre:border-slate-700/50 prose-pre:shadow-2xl prose-pre:backdrop-blur-sm
+                      prose-blockquote:bg-gradient-to-r prose-blockquote:from-blue-800/50 prose-blockquote:to-blue-800/30 
+                      prose-blockquote:px-8 prose-blockquote:py-6 prose-blockquote:rounded-r-xl prose-blockquote:text-blue-200 prose-blockquote:shadow-xl
+                      prose-code:bg-blue-800/80 prose-code:text-blue-300 prose-code:px-2 prose-code:py-1 prose-code:rounded prose-code:text-sm prose-code:font-mono prose-code:border prose-code:border-blue-700/50
+                      prose-pre:bg-blue-900/90 prose-pre:border prose-pre:border-blue-700/50 prose-pre:shadow-2xl prose-pre:backdrop-blur-sm
                       prose-ul:space-y-3 prose-ol:space-y-3
-                      prose-li:text-slate-300 prose-li:leading-relaxed
-                      prose-img:rounded-xl prose-img:shadow-2xl prose-img:border prose-img:border-slate-700/50">
+                      prose-li:text-blue-300 prose-li:leading-relaxed
+                      prose-img:rounded-xl prose-img:shadow-2xl prose-img:border prose-img:border-blue-700/50">
             {children}
           </div>
 
           {/* Enhanced footer with author info */}
           <footer className="mt-20 pt-12 border-t border-slate-800/50">
             <Card className="bg-gradient-to-br from-slate-900/50 to-slate-800/30 border border-slate-700/30 shadow-2xl backdrop-blur-xl rounded-2xl overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-purple-500/5"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-blue-600/5"></div>
               <CardHeader className="pb-4 relative">
                 <CardTitle className="text-2xl font-bold text-slate-100 flex items-center space-x-3">
                   <span>✨</span>
@@ -199,7 +185,7 @@ export function BlogLayout({
                 <div className="flex items-start space-x-6">
                   <Avatar className="h-20 w-20 ring-2 ring-slate-600/50 ring-offset-4 ring-offset-slate-900/50">
                     <AvatarImage src={authorImage} alt={author} />
-                    <AvatarFallback className="bg-gradient-to-br from-blue-500 to-purple-600 text-white text-2xl font-bold">
+                    <AvatarFallback className="bg-gradient-to-br from-blue-500 to-blue-600 text-white text-2xl font-bold">
                       {author.split(' ').map(n => n[0]).join('')}
                     </AvatarFallback>
                   </Avatar>
@@ -245,7 +231,7 @@ export function BlogLayout({
                     placeholder="your@email.com" 
                     className="flex-1 px-4 py-3 bg-slate-800/80 border border-slate-600/50 rounded-xl text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-transparent transition-all duration-300"
                   />
-                  <button className="px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+                  <button className="px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
                     Subscribe
                   </button>
                 </div>
